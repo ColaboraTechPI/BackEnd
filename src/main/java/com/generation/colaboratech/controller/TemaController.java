@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,5 +42,15 @@ public class TemaController {
 	public ResponseEntity<List<Tema>> getAll()
 	{
 		return ResponseEntity.ok(temaRepository.findAll());
+	}
+	
+	@PutMapping
+	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema)
+	{
+		return temaRepository.findById(tema.getId())
+				.map(resposta ->
+				ResponseEntity.status(HttpStatus.OK)
+				.body(temaRepository.save(tema)))
+				.orElse(ResponseEntity.notFound().build());
 	}
 }
