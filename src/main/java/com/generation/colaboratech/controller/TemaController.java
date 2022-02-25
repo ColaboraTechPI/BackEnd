@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,6 +53,18 @@ public class TemaController {
 				.map(resposta ->
 				ResponseEntity.status(HttpStatus.OK)
 				.body(temaRepository.save(tema)))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> deleteTema(@PathVariable Long id)
+	{
+		return temaRepository.findById(id)
+				.map(resposta ->
+				{
+					temaRepository.deleteById(id);
+					return ResponseEntity.noContent().build();
+				})
 				.orElse(ResponseEntity.notFound().build());
 	}
 }
