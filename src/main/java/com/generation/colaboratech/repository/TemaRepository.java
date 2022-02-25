@@ -11,4 +11,6 @@ import com.generation.colaboratech.model.Tema;
 public interface TemaRepository extends JpaRepository <Tema, Long>{
 	
 	public List <Tema> findAllByNomeContainingIgnoreCase(String nome);
+	
+	public boolean existsByNomeContainingIgnoreCase (String nome);
 }
