@@ -37,8 +37,23 @@ public class TemaController {
 			return new ResponseEntity("Este tema já existe.",HttpStatus.BAD_REQUEST);
 		}
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(temaRepository.save(tema));
+	
+			.body(temaRepository.save(tema));
+		
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Tema> getById(@PathVariable Long id){
+		return temaRepository.findById(id)
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Tema>> getByNome (@PathVariable String nome){
+		return ResponseEntity.ok(temaRepository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Tema>> getAll()
@@ -67,4 +82,5 @@ public class TemaController {
 				})
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
 }
