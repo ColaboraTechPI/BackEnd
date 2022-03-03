@@ -13,9 +13,9 @@ public interface PostagemRepository extends JpaRepository <Postagem, Long> {
 
      List <Postagem> findAllByTituloContainingIgnoreCase(String titulo);
 	 
-    /* List <Postagem> findAllByDataOrderBy(LocalDateTime data);
+     List <Postagem> findAllByDataOrderByDataAsc(LocalDateTime data);
      
-     List <Postagem> findAllByDataOrderByDesc(LocalDateTime data);*/
+     List <Postagem> findAllByDataOrderByDataDesc(LocalDateTime data);
      
      
 }

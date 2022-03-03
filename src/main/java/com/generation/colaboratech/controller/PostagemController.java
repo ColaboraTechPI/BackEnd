@@ -61,10 +61,10 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
-	/*@GetMapping("/data/asc")
+	@GetMapping("/data/asc")
 	public ResponseEntity<List<Postagem>> getAllByDataAsc(LocalDateTime data){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByDataOrderBy(data));
+		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDataAsc(data));
 				
 	}
 	
@@ -72,9 +72,9 @@ public class PostagemController {
 	@GetMapping("/data/desc")
 	public ResponseEntity<List<Postagem>> getAllByDataDesc(LocalDateTime data){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDesc(data));
+		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDataDesc(data));
 				
-	}*/
+	}
 	
 	
 	@PutMapping
