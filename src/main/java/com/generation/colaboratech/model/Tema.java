@@ -27,7 +27,7 @@ public class Tema {
 	@NotBlank(message = "A descrição é obrigatória!")
 	private String descricao;
 
-	@OneToMany(mappedBy="tema",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="tema",cascade=CascadeType.ALL) //Verificar se o Cascade é obrigatório.
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 	
