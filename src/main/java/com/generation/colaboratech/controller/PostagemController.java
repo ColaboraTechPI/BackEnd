@@ -62,24 +62,24 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
-	@GetMapping("/data/asc/")
-	public ResponseEntity<List<Postagem>> getAllByDataAsc(Long id){
+	@GetMapping("/data/asc")
+	public ResponseEntity<List<Postagem>> getAllAsc(){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByIdOrderByIdAsc(id));
+		return ResponseEntity.ok(postagemRepository.findAllCrescente());
 				
 	}
 	
 	
 	@GetMapping("/data/desc")
-	public ResponseEntity<List<Postagem>> getAllByDataDesc(LocalDateTime data){
+	public ResponseEntity<List<Postagem>> getAllDesc(){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByIdOrderByIdDesc(data));
+		return ResponseEntity.ok(postagemRepository.findAllDecrescente());
 				
 	}
 	
 	
 	@PutMapping
-    //public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
+    public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
         if (temaRepository.existsById(postagem.getTema().getId())) {
             return postagemRepository.findById(postagem.getId())
                     .map(resposta -> ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem)))
