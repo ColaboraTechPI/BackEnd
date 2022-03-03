@@ -61,7 +61,7 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
-	@GetMapping("/data/asc")
+	/*@GetMapping("/data/asc")
 	public ResponseEntity<List<Postagem>> getAllByDataAsc(LocalDateTime data){
 		
 		return ResponseEntity.ok(postagemRepository.findAllByDataOrderBy(data));
@@ -74,7 +74,7 @@ public class PostagemController {
 		
 		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDesc(data));
 				
-	}
+	}*/
 	
 	
 	@PutMapping
