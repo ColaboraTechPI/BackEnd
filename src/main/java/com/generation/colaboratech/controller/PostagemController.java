@@ -1,5 +1,6 @@
 package com.generation.colaboratech.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.colaboratech.model.Postagem;
+import com.generation.colaboratech.repository.PostagemRepository;
 import com.generation.colaboratech.repository.TemaRepository;
 
 @RestController
@@ -58,6 +60,22 @@ public class PostagemController {
 	{
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
+	
+	@GetMapping("/data/asc")
+	public ResponseEntity<List<Postagem>> getAllByDataAsc(LocalDateTime data){
+		
+		return ResponseEntity.ok(postagemRepository.findAllByDataOrderBy(data));
+				
+	}
+	
+	
+	@GetMapping("/data/desc")
+	public ResponseEntity<List<Postagem>> getAllByDataDesc(LocalDateTime data){
+		
+		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDesc(data));
+				
+	}
+	
 	
 	@PutMapping
     public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
