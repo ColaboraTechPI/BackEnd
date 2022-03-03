@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,10 +62,10 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
-	@GetMapping("/data/asc")
-	public ResponseEntity<List<Postagem>> getAllByDataAsc(LocalDateTime data){
+	@GetMapping("/data/asc/")
+	public ResponseEntity<List<Postagem>> getAllByDataAsc(Long id){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDataAsc(data));
+		return ResponseEntity.ok(postagemRepository.findAllByIdOrderByIdAsc(id));
 				
 	}
 	
@@ -72,7 +73,7 @@ public class PostagemController {
 	@GetMapping("/data/desc")
 	public ResponseEntity<List<Postagem>> getAllByDataDesc(LocalDateTime data){
 		
-		return ResponseEntity.ok(postagemRepository.findAllByDataOrderByDataDesc(data));
+		return ResponseEntity.ok(postagemRepository.findAllByIdOrderByIdDesc(data));
 				
 	}
 	
