@@ -39,7 +39,7 @@ public class Usuario {
 	@NotBlank(message = "O campo tipo é obrigatório!")
 	private String tipo;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE) 
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 
