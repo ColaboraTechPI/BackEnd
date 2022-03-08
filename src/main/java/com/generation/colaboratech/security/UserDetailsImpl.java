@@ -3,7 +3,7 @@ package com.generation.colaboratech.security;
 import java.util.Collection;
 import java.util.List;
 
-import com.generation.blogpessoal.model.Usuario;
+import com.generation.colaboratech.model.Usuario;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
