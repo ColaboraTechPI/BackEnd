@@ -12,5 +12,5 @@ public interface TemaRepository extends JpaRepository <Tema, Long>{
 	
 	public List <Tema> findAllByNomeContainingIgnoreCase(String nome);
 	
-	public boolean existsByNomeContainingIgnoreCase (String nome);
+	public boolean existsByNomeContainingIgnoreCase (String nome); //adicionando opção limitação de temas
 }
