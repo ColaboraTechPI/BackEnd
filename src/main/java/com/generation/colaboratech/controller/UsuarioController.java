@@ -65,6 +65,8 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
+	/*
+	
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<Object> deleteUsuario(@PathVariable Long id){
 		return usuarioRepository.findById(id)
@@ -74,5 +76,5 @@ public class UsuarioController {
 				})
 				.orElse(ResponseEntity.notFound().build());
 	}
-
+	*/
 }
