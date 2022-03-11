@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.colaboratech.model.Tema;
 import com.generation.colaboratech.repository.TemaRepository;
+import com.generation.colaboratech.service.TemaService;
 
 @RestController
 @RequestMapping("/temas")
@@ -28,6 +29,8 @@ public class TemaController {
 	@Autowired
 	private TemaRepository temaRepository;
 	
+	@Autowired
+	private TemaService temaService;
 	
 	@PostMapping
 	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema)
@@ -64,12 +67,10 @@ public class TemaController {
 	@PutMapping
 	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema)
 	{
-		return temaRepository.findById(tema.getId())
-				.map(resposta ->
-				ResponseEntity.status(HttpStatus.OK)
-				.body(temaRepository.save(tema)))
-				.orElse(ResponseEntity.notFound().build());
-	}
+        return temaService.atualizarTema(tema)
+                .map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+    }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteTema(@PathVariable Long id)
