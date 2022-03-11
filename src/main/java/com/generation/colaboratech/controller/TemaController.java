@@ -32,7 +32,7 @@ public class TemaController {
 	@PostMapping
 	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema)
 	{
-		if(temaRepository.existsByNomeContainingIgnoreCase(tema.getNome()))
+		if(temaRepository.existsByNomeIgnoreCase(tema.getNome()))
 		{
 			return new ResponseEntity("Este tema já existe.",HttpStatus.BAD_REQUEST);
 		}
