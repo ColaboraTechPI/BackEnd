@@ -1,11 +1,9 @@
 package com.generation.colaboratech.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.colaboratech.model.Postagem;
 import com.generation.colaboratech.repository.PostagemRepository;
 import com.generation.colaboratech.repository.TemaRepository;
+import com.generation.colaboratech.service.PostagemService;
 
 @RestController
 @RequestMapping("/postagens")
@@ -30,6 +29,9 @@ public class PostagemController {
 
 	@Autowired
 	private PostagemRepository postagemRepository;
+	
+	@Autowired
+	private PostagemService postagemService;
 
 	@Autowired
 	private TemaRepository temaRepository;
@@ -99,5 +101,12 @@ public class PostagemController {
 					return ResponseEntity.noContent().build();
 				})
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PutMapping("/curtir/{id}")
+	public ResponseEntity<Postagem> curtirPostagem(@PathVariable Long id){
+		return postagemService.curtirPostagem(id)
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.badRequest().build());
 	}
 }
